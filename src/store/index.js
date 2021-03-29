@@ -23,11 +23,11 @@ export default new Vuex.Store({
         return i !== payload;
       });
     },
-    addDiets(state, payload) {
-      state.dietss = [...state.dietss, payload];
+    addDiet(state, payload) {
+      state.diets = [...state.diets, payload];
     },
-    removeDiets(state, payload) {
-      state.dietss = state.dietss.filter(d => {
+    removeDiet(state, payload) {
+      state.diets = state.diets.filter(d => {
         return d !== payload;
       });
     }
@@ -44,8 +44,8 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    recipeURL({ ingredients }) {
-      const tags = [...ingredients].join(",").toLowerCase();
+    recipeURL({ ingredients, diets }) {
+      const tags = [...ingredients, ...diets].join(",").toLowerCase();
       return `${apiURL}&tags=${tags}`;
     }
   },

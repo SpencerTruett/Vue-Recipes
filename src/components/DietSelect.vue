@@ -18,11 +18,27 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from "vuex"
+
 export default {
   data() {
     return {
       options: ["Gluten Free", "Ketogenic", "Vegetarin", "Vegan", "Pescatarian", "Paleo", "Whole30"]
     };
+  },
+    methods: {
+    ...mapMutations(["addDiet", "removeDiet"]),
+    toggle(option) {
+      const alreadyChosen = this.diets.some(d => d === option);
+      if (alreadyChosen) {
+        this.removeDiet(option);
+      } else {
+        this.addDiet(option);
+      }
+    }
+  },
+  computed: {
+    ...mapState(["diets"])
   }
 }
 </script>
