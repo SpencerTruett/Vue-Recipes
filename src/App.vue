@@ -1,8 +1,16 @@
-<template></template>
+<template>
+  <v-app>
+    <v-btn @click="getRandomRecipes">Find recipes</v-btn>
+  </v-app>
+</template>
 
 <script>
-export default {
+import { mapActions } from "vuex";
 
+export default {
+  methods: {
+    ...mapActions(["getRandomRecipes"])
+  }
 }
 </script>
 
