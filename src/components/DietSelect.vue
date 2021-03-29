@@ -23,7 +23,7 @@ import { mapMutations, mapState } from "vuex"
 export default {
   data() {
     return {
-      options: ["Gluten Free", "Ketogenic", "Vegetarin", "Vegan", "Pescatarian", "Paleo", "Whole30"]
+      options: ["Gluten Free", "Ketogenic", "Vegetarian", "Vegan", "Pescatarian", "Paleo", "Whole30"]
     };
   },
     methods: {
