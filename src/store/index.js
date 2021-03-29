@@ -3,6 +3,8 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const apiURL = `https://api.spoonacular.com/recipes/random?number=3&apiKey=${process.env.VUE_APP_SPOONACULAR_KEY}`;
+
 export default new Vuex.Store({
   state: {
     searchResults: [],
@@ -22,14 +24,20 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getRandomRecipes({ commit }) {
-      const apiBaseUrl = "https://api.spoonacular.com/recipes";
-      const apiKey = process.env.VUE_APP_SPOONACULAR_KEY;
-      const url = `${apiBaseUrl}/random?number=3&apiKey=${apiKey}`;
+    async getRandomRecipes({ getters, commit }) {
+      // const apiBaseUrl = "https://api.spoonacular.com/recipes";
+      // const apiKey = process.env.VUE_APP_SPOONACULAR_KEY;
+      // const url = `${apiBaseUrl}/random?number=3&apiKey=${apiKey}`;
 
-      const res = await fetch(url);
+      const res = await fetch(getters.recipeURL);
       const data = await res.json();
       commit("setSearchResults", data.recipes);
+    }
+  },
+  getters: {
+    recipeURL({ ingredients }) {
+      const tags = [...ingredients].join(",").toLowerCase();
+      return `${apiURL}&tags=${tags}`;
     }
   },
   modules: {},
