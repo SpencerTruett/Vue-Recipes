@@ -5,11 +5,20 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    searchResults: []
+    searchResults: [],
+    ingredients: [],
   },
   mutations: {
     setSearchResults(state, payload) {
       state.searchResults = payload;
+    },
+    addIngredient(state, payload) {
+      state.ingredients = [...state.ingredients, payload];
+    },
+    removeIngredient(state, payload) {
+      state.ingredients = state.ingredients.filter(i => {
+        return i !== payload;
+      });
     }
   },
   actions: {
