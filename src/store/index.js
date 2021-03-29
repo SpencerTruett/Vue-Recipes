@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     searchResults: [],
     ingredients: [],
+    diets: []
   },
   mutations: {
     setSearchResults(state, payload) {
@@ -20,6 +21,14 @@ export default new Vuex.Store({
     removeIngredient(state, payload) {
       state.ingredients = state.ingredients.filter(i => {
         return i !== payload;
+      });
+    },
+    addDiets(state, payload) {
+      state.dietss = [...state.dietss, payload];
+    },
+    removeDiets(state, payload) {
+      state.dietss = state.dietss.filter(d => {
+        return d !== payload;
       });
     }
   },
